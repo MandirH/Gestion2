@@ -77,14 +77,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="cargo" class="col-md-4 col-form-label text-md-end">{{ __('Cargo') }}</label>
-
+                            <label for="nombre_cargo" class="col-md-4 col-form-label text-md-end">{{ __('Cargo') }}</label>
                             <div class="col-md-6">
-                                <input id="cargo" type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}" required autocomplete="cargo" autofocus>
+                                <select id="nombre_cargo" aria-label="Default select example" class="form-control @error('nombre_cargo') is-invalid @enderror" name="nombre_cargo" value="{{ old('nombre_cargo') }}" required autocomplete="producto_categoria" autofocus>
+                                    @foreach ($rcargo as $rcargo)
+                                        <option value={{$rcargo->nombre_cargo}}>{{$rcargo->nombre_cargo}}</option>
+                                    @endforeach
+                                </select>
 
-                                @error('cargo')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                @error('producto_categoria')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong class="alert-form">{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>

@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\Cargo;
+
 class RegisterController extends Controller
 {
     /*
@@ -56,7 +58,7 @@ class RegisterController extends Controller
             'dni' => ['required', 'int ', 'min:8'],
             'celular' => ['required', 'int', 'min:9'],
             'direccion' => ['required', 'string', 'max:255'],
-            'cargo' => ['required', 'string', 'max:255'],
+            'nombre_cargo' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -77,10 +79,17 @@ class RegisterController extends Controller
             'celular' => $data['celular'],
             'direccion' => $data['direccion'],
             'foto' => '',
-            'cargo' => $data['cargo'],
+            'cargo' => $data['nombre_cargo'],
             'estado' => 'activo',
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function MostrarCargo(){
+        $rcargo = Cargo::all();
+        return view('/auth/register' , compact('rcargo'));
+    }
+
+
 }

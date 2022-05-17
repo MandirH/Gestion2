@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::view('/cargo', 'cargo')->name('cargo');
+Route::post('/cargo', [CargoController::class, 'CrearCargo']);
+
+Route::view('/register', 'register');
+Route::get('/register', [RegisterController::class, 'MostrarCargo'])->name('register');
+
