@@ -47,6 +47,10 @@ Route::post('/cargo-activar', [CargoController::class, 'Activar'])->name('cargo-
 Route::post('/cargo-desactivar', [CargoController::class, 'Desactivar'])->name('cargo-desactivar');
 Route::post('/cargo-editar', [CargoController::class, 'Editar'])->name('cargo-editar');
 
+Route::post('/cargo-activar-home', [CargoController::class, 'ActivarH'])->name('cargo-activar-home');
+Route::post('/cargo-desactivar-home', [CargoController::class, 'DesactivarH'])->name('cargo-desactivar-home');
+Route::post('/cargo-editar-home', [CargoController::class, 'EditarH'])->name('cargo-editar-home');
+
 /* ---- USUARIOS ---- */
 
 Route::view('/usuarios', 'usuarios')->name('usuario');

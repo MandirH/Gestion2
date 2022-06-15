@@ -280,6 +280,24 @@
         <div class="box-home-center">
             <div class="cont-form-cargo">
                 <div class="cont-body-prin-e-s">
+                    @if(session('status'))
+                        @if(session('status')=='Cargo Activado!')
+                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTIVADO!</strong> Cargo Activado.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @elseif(session('status')=='Cargo Inactivo!')
+                            <div class="alert alert-esp alert-danger alert-dismissible fade show" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">INACTIVO!</strong> Cargo Inactivo.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @elseif(session('status')=='Cargo Actualizado!')
+                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTUALIZDO!</strong> Cargo actualizado.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                    @endif
                     <div class="cont-body-box-table">
                         <table class="table table-striped">
                             <thead>
@@ -314,26 +332,26 @@
                                     </td>
                                     <td class="cell-align">{{$cargo['horas_cargo']}} horas</td>
                                     <td class="cell-align">
-                                        <button type="submit" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#ModalPlanta{{$entrada['id']}}">
+                                        <button type="submit" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#ModalPlantaC{{$cargo['id']}}">
                                             <span class="icon-nav"><ion-icon name="create-outline"></ion-icon></span>{{ __('Editar') }}
                                         </button>
                                     </td>
                                     <td class="cell-align">
-                                        @if($entrada["estado"] == 'Activo')
+                                        @if($cargo["estado"] == 'Activo')
                                             <div class="form-check form-switch">
-                                                <form method='post' action='{{ route('entrada-cargo-desactivar') }}' id="formActivate{{$entrada['id']}}">
+                                                <form method='post' action='{{ route('cargo-desactivar-home') }}' id="formActivateC{{$cargo['id']}}">
                                                     @csrf
-                                                    <input type='hidden' name='id' value='{{$entrada['id']}}'>
-                                                    <input class="form-check-input" type="checkbox" value="{{$entrada['id']}}" id="{{$entrada['id']}}" onchange="document.getElementById('formActivate{{$entrada['id']}}').submit()" checked>
+                                                    <input type='hidden' name='id' value='{{$cargo['id']}}'>
+                                                    <input class="form-check-input" type="checkbox" value="{{$cargo['id']}}" id="{{$cargo['id']}}" onchange="document.getElementById('formActivateC{{$cargo['id']}}').submit()" checked>
                                                     <label class="form-check-label" for="flexSwitchCheckChecked">Activo</label>
                                                 </form>
                                             </div>
                                         @else
                                             <div class="form-check form-switch">
-                                                <form method='post' action='{{ route('entrada-cargo-activar') }}' id="formActivate{{$entrada['id']}}">
+                                                <form method='post' action='{{ route('cargo-activar-home') }}' id="formActivateC{{$cargo['id']}}">
                                                     @csrf
-                                                    <input type='hidden' name='id' value='{{$entrada['id']}}'>
-                                                    <input class="form-check-input" type="checkbox" value="" id="{{$entrada['id']}}" onchange="document.getElementById('formActivate{{$entrada['id']}}').submit()">
+                                                    <input type='hidden' name='id' value='{{$cargo['id']}}'>
+                                                    <input class="form-check-input" type="checkbox" value="" id="{{$cargo['id']}}" onchange="document.getElementById('formActivateC{{$cargo['id']}}').submit()">
                                                     <label class="form-check-label" for="flexSwitchCheckChecked">Inactivo</label>
                                                 </form>
                                             </div>
@@ -489,8 +507,104 @@
                 </div>
             </div>
         @endforeach
-    @else
 
+    <!-- Modal Cargo Home -->
+
+        @foreach($rcargo as $cargo)
+            <div class="modal fade" id="ModalPlantaC{{$cargo['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"><span class="icon-nav"><ion-icon name="create-outline"></ion-icon></span>Editar</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-img">
+                                <img src="/img/01.gif" alt="gif-house">
+                            </div>
+                            <form method="POST" action="{{ route('cargo-editar-home') }}" enctype="multipart/form-data" id="FormPlC{{$cargo["id"]}}">
+                                @csrf
+
+                                <div class="row mb-3">
+                                    <label for="nombre_cargo" class="col-md-4 col-form-label text-md-end">{{ __('Nombre del Cargo') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="nombre_cargo" type="text" class="form-control @error('nombre_cargo') is-invalid @enderror" name="nombre_cargo" value="{{$cargo["nombre_cargo"]}}" required autocomplete="nombre_cargo" autofocus>
+                                        <input type="hidden" name="id" value="{{$cargo['id']}}">
+
+                                        @error('nombre_cargo')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="horas_cargo" class="col-md-4 col-form-label text-md-end">{{ __('Horas del Cargo') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="horas_cargo" type="number" placeholder="maximo 12 horas" class="form-control @error('horas_cargo') is-invalid @enderror" name="horas_cargo" value="{{$cargo["horas_cargo"]}}" required autocomplete="horas_cargo" autofocus>
+
+                                        @error('horas_cargo')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                @foreach($rentradac as $entrada)
+                                    @if($entrada['id_cargo'] == $cargo['id'])
+                                        <div class="row mb-3">
+                                            <label for="horas_entrada" class="col-md-4 col-form-label text-md-end">{{ __('Entrada') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id_entrada" value="{{$entrada['id']}}">
+                                                <input id="horas_entrada" type="number" placeholder="..." class="form-control @error('horas_entrada') is-invalid @enderror" name="horas_entrada" value="{{$entrada['horas']}}" required autocomplete="horas_entrada" autofocus>
+
+                                                @error('horas_entrada')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+
+                                @foreach($rsalidac as $salida)
+                                    @if($salida['id_cargo'] == $cargo['id'])
+                                        <div class="row mb-3">
+                                            <label for="horas_salida" class="col-md-4 col-form-label text-md-end">{{ __('Salida') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="id_salida" value="{{$salida['id']}}">
+                                                <input id="horas_salida" type="number" placeholder="..." class="form-control @error('horas_salida') is-invalid @enderror" name="horas_salida" value="{{$salida["horas"]}}" required autocomplete="horas_salida" autofocus>
+
+                                                @error('horas_salida')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" form="FormPlC{{$cargo["id"]}}">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <!-- Usuario -->
     @endif
 </div>
 @endsection
