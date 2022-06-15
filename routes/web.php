@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EntradaCargoController;
+use App\Http\Controllers\SalidaCargoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -23,9 +26,54 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/cargo', 'cargo')->name('cargo');
-Route::post('/cargo', [CargoController::class, 'CrearCargo']);
+/* ---- AUTH ---- */
 
 Route::view('/register', 'register');
 Route::get('/register', [RegisterController::class, 'MostrarCargo'])->name('register');
 
+/* ---- PERFIL ---- */
+
+Route::view('/perfil', 'perfil');
+Route::get('/perfil', [UserController::class, "Mostrar"])->name('perfil');
+Route::post('/perfil-actualizar', [UserController::class, "Actualizar"])->name('perfil-actualizar');
+Route::post('/perfil-actualizar-contraseña', [UserController::class, "ActualizarContraseña"])->name('perfil-actualizar-contraseña');
+
+/* ---- CARGOS ---- */
+
+Route::view('/cargos', 'cargo')->name('cargo');
+Route::get('/cargos', [CargoController::class, "Mostrar"])->name('cargos');
+Route::post('/cargos-crear', [CargoController::class, 'CrearCargo'])->name('cargos-crear');
+Route::post('/cargo-activar', [CargoController::class, 'Activar'])->name('cargo-activar');
+Route::post('/cargo-desactivar', [CargoController::class, 'Desactivar'])->name('cargo-desactivar');
+Route::post('/cargo-editar', [CargoController::class, 'Editar'])->name('cargo-editar');
+
+/* ---- USUARIOS ---- */
+
+Route::view('/usuarios', 'usuarios')->name('usuario');
+Route::get('/usuarios', [UserController::class, "MostrarUsuarios"])->name('usuarios');
+Route::post('/usuarios-crear', [UserController::class, 'Crear'])->name('usuarios-crear');
+Route::post('/usuarios-activar', [UserController::class, 'Activar'])->name('usuarios-activar');
+Route::post('/usuarios-desactivar', [UserController::class, 'Desactivar'])->name('usuarios-desactivar');
+Route::post('/usuarios-editar', [UserController::class, 'Editar'])->name('usuarios-editar');
+
+/* ---- ENTRADAS CARGO ---- */
+
+Route::post('/entrada-cargo-crear', [EntradaCargoController::class, 'Crear'])->name('entrada-cargo-crear');
+Route::post('/entrada-cargo-activar', [EntradaCargoController::class, 'Activar'])->name('entrada-cargo-activar');
+Route::post('/entrada-cargo-desactivar', [EntradaCargoController::class, 'Desactivar'])->name('entrada-cargo-desactivar');
+Route::post('/entrada-cargo-editar', [EntradaCargoController::class, 'Editar'])->name('entrada-cargo-editar');
+
+/* ---- SALIDAS CARGO ---- */
+
+Route::post('/salida-cargo-crear', [SalidaCargoController::class, 'Crear'])->name('salida-cargo-crear');
+Route::post('/salida-cargo-activar', [SalidaCargoController::class, 'Activar'])->name('salida-cargo-activar');
+Route::post('/salida-cargo-desactivar', [SalidaCargoController::class, 'Desactivar'])->name('salida-cargo-desactivar');
+Route::post('/salida-cargo-editar', [SalidaCargoController::class, 'Editar'])->name('salida-cargo-editar');
+
+/* ---- ENTRADAS ---- */
+
+//...
+
+/* ---- SALIDAS ---- */
+
+//...

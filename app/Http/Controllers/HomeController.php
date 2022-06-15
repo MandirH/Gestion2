@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargo;
+use App\Models\EntradaCargo;
+use App\Models\SalidaCargo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $rcargo = Cargo::get();
+        $rentradac = EntradaCargo::get();
+        $rsalidac = SalidaCargo::get();
+
+        return view('/home' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac]);
     }
 }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -29,6 +32,18 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        $user = new User();
+        $user->nombre = 'Admin';
+        $user->apellido = 'Admin';
+        $user->dni = '87654321';
+        $user->celular = '987654321';
+        $user->direccion = 'None';
+        $user->email = 'Admin@laravel.com';
+        $user->password = Hash::make('12345678');
+        $user->cargo = 'Administrador';
+        $user->estado = 'Activo';
+        $user->Save();
     }
 
     /**

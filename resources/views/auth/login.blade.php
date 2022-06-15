@@ -3,9 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="cont-form">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header card-header-mod">
+                    {{ __('Login') }}
+                    <img src="/img/login.png" alt="Login" class="login-img">
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
