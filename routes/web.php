@@ -26,7 +26,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/registro', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*-----REGISTRO--------*/
+Route::get('/registro', [App\Http\Controllers\EntradaController::class, 'mostrarRegistro'])->name('registro');
+Route::post('/registro', [App\Http\Controllers\EntradaController::class, 'buscarRegistro'])->name('buscarRegistro');
 
 /* ---- AUTH ---- */
 

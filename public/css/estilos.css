@@ -519,6 +519,13 @@ body{
     border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
+.imput-date{
+    font-size: .9rem;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
 @keyframes App-logo-spin-img {
     from {
         transform: rotate(0deg);

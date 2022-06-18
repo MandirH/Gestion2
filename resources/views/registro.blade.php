@@ -32,7 +32,6 @@
                     <div class="cont-body-prin">
                         <div class="card-header card-header-mod">
                             {{ __('ENTRADAS') }}
-                            <img src="/img/entrada.png" alt="Register" class="login-img">
                         </div>
 
                         <div class="card-body">
@@ -633,7 +632,6 @@
                     <div class="cont-body-prin">
                         <div class="card-header card-header-mod">
                             {{ __('ENTRADAS') }}
-                            <img src="/img/entrada.png" alt="Register" class="login-img">
                         </div>
 
                         <div class="card-body">
@@ -642,21 +640,14 @@
 
                                 <input type="hidden" name="id" value="{{Auth::user()->id}}">
 
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Marcar Asistencia') }}
-                                        </button>
-                                    </div>
-                                </div>
+
                             </form>
                         </div>
                     </div>
-                    <div class="cont-body-prin mr-20px">
+                    <div class="cont-body-prin mr-20px ">
                         <div class="card-header card-header-mod">
 
-                        <input type="text" name="datetimes" />
-
+                        <input type="text" name="datetimes" class="imput-date"/>
                             <script>
                             $(function() {
                             $('input[name="datetimes"]').daterangepicker({
@@ -670,6 +661,32 @@
                             });
                             </script>
                         </div>
+
+                        <form action="registro-date" method="POST">
+                        @csrf
+                        <input type='hidden' name='id' value='{{Auth::user()->id}}'>
+
+                        <div class="container">
+                            <div class="row">
+                            <div class="container-fluid">
+                                <div class="form-group row">
+                                <label for="date" class="col-form-label col-ms-2">Dato 1</label>
+                                <div class="col-sm-3">
+                                    <input type="date" class="form-contrl input-sm" id="fromDate" name="fromDate" required>
+                                </div>
+                                <label for="date" class="col-form-label col-ms-2">Dato 2</label>
+                                <div class="col-sm-3">
+                                    <input type="date" class="form-contrl input-sm" id="toDate" name="toDate" required>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" name="search" class="btn" title="Search"><span class="icon-nav"><ion-icon name="search-outline"></ion-icon></span></button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        </form>
                     </div>
                     <div class="cont-body-prin mr-20px">
                         <div class="cont-body-box-table">
