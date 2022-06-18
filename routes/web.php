@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\EntradaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/registro', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /* ---- AUTH ---- */
 
@@ -76,7 +78,7 @@ Route::post('/salida-cargo-editar', [SalidaCargoController::class, 'Editar'])->n
 
 /* ---- ENTRADAS ---- */
 
-//...
+Route::post('/entrada-crear', [EntradaController::class, 'Crear'])->name('entrada-crear');
 
 /* ---- SALIDAS ---- */
 

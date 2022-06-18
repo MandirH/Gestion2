@@ -6,6 +6,8 @@ use App\Models\Cargo;
 use App\Models\EntradaCargo;
 use App\Models\SalidaCargo;
 use Illuminate\Http\Request;
+use App\Models\Entrada;
+use App\Models\Salida;
 
 class HomeController extends Controller
 {
@@ -29,7 +31,9 @@ class HomeController extends Controller
         $rcargo = Cargo::get();
         $rentradac = EntradaCargo::get();
         $rsalidac = SalidaCargo::get();
+        $rentrada = Entrada::get();
+        $rsalida = Salida::get();
 
-        return view('/home' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac]);
+        return view('/home' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac , "rentrada"=>$rentrada, "rsalida"=>$rsalida]);
     }
 }

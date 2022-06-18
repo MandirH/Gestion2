@@ -15,7 +15,6 @@ class CreateSalidasTable extends Migration
     {
         Schema::create('salidas', function (Blueprint $table) {
             $table->id();
-            $table->string('horas');
             $table->string('estado');
             $table->timestamps();
         });
