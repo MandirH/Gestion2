@@ -32,7 +32,6 @@
                     <div class="cont-body-prin">
                         <div class="card-header card-header-mod">
                             {{ __('ENTRADAS') }}
-                            <img src="/img/entrada.png" alt="Register" class="login-img">
                         </div>
 
                         <div class="card-body">
@@ -605,102 +604,103 @@
         @endforeach
     @else
     <div class="contenedor-home justify-content-center">
-            <div class="box-home box-home-left">
-                <div class="cont-form-cargo">
-                    @if(session('status'))
-                        @if(session('status')=='Entrada Creada!')
-                            <div class="alert alert-esp alert-primary alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">REGISTRADO!</strong> Entrada registrada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @elseif(session('status')=='Entrada Actualizada!')
-                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTUALIZDO!</strong> Entrada actualizada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @elseif(session('status')=='Entrada Activada!')
-                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTIVADO!</strong> Entrada activada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @elseif(session('status')=='Entrada Inactiva!')
-                            <div class="alert alert-esp alert-danger alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">INACTIVO!</strong> Entrada inactiva.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
+            <div class="box-home-registro">
+                @if(session('status'))
+                    @if(session('status')=='Entrada Creada!')
+                        <div class="alert alert-esp alert-primary alert-dismissible fade show" role="alert">
+                            <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">REGISTRADO!</strong> Entrada registrada.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif(session('status')=='Entrada Actualizada!')
+                        <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
+                            <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTUALIZDO!</strong> Entrada actualizada.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif(session('status')=='Entrada Activada!')
+                        <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
+                            <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTIVADO!</strong> Entrada activada.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @elseif(session('status')=='Entrada Inactiva!')
+                        <div class="alert alert-esp alert-danger alert-dismissible fade show" role="alert">
+                            <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">INACTIVO!</strong> Entrada inactiva.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
-                    <div class="cont-body-prin">
-                        <div class="card-header card-header-mod">
-                            {{ __('ENTRADAS') }}
-                            <img src="/img/entrada.png" alt="Register" class="login-img">
-                        </div>
-
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('entrada-crear') }}">
-                                @csrf
-
-                                <input type="hidden" name="id" value="{{Auth::user()->id}}">
-
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Marcar Asistencia') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                @endif
+                <div class="cont-body-prin">
+                    <div class="card-header card-header-mod">
+                        {{ __('REGISTRO') }}
                     </div>
 
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('entrada-crear') }}">
+                            @csrf
+
+                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
+
+
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="box-home box-home-right">
-                <div class="cont-form-cargo">
-                    @if(session('status'))
-                        @if(session('status')=='Salida Creada!')
-                            <div class="alert alert-esp alert-primary alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">REGISTRADO!</strong> Salida registrada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="cont-body-prin mr-20px ">
+                    <div class="card-header card-header-mod title-date">
+                        SELECCIONE UN RANGO DE FECHAS
+                    </div>
+
+                    <form action="{{ route('registro-date') }}" method="POST">
+                        @csrf
+                        <input type='hidden' name='id' value='{{Auth::user()->id}}'>
+
+                        <div class="form-group cont-date-input">
+                            <label for="date" class="col-form-label col-ms-2">Inicio</label>
+                            <div class="col-sm-3 col-sm-3-off">
+                                <input type="date" class="form-contrl input-sm input-date-r" id="fromDate" name="fromDate" required>
                             </div>
-                        @elseif(session('status')=='Salida Actualizada!')
-                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTUALIZDO!</strong> Salida actualizada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <label for="date" class="col-form-label col-ms-2">Fin</label>
+                            <div class="col-sm-3 col-sm-3-off">
+                                <input type="date" class="form-contrl input-sm input-date-r" id="toDate" name="toDate" required>
                             </div>
-                        @elseif(session('status')=='Salida Activada!')
-                            <div class="alert alert-esp alert-success alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTIVADO!</strong> Salida activada.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <div class="col-sm-2 col-sm-3-off">
+                                <button type="submit" name="search" class="btn input-date-button" title="Search"><span class="icon-nav btn btn-primary"><ion-icon name="search-outline"></ion-icon></span></button>
                             </div>
-                        @elseif(session('status')=='Salida Inactiva!')
-                            <div class="alert alert-esp alert-danger alert-dismissible fade show" role="alert">
-                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">INACTIVO!</strong> Salida inactiva.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
-                    @endif
-                    <div class="cont-body-prin mr-20px-activate">
-                        <div class="card-header card-header-mod">
-                            {{ __('SALIDAS') }}
-                            <img src="/img/salida.png" alt="Register" class="login-img">
                         </div>
 
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('salida-crear') }}">
-                                @csrf
-
-                                <input type="hidden" name="id" value="{{Auth::user()->id}}">
-
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Marcar Salida') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    </form>
+                </div>
+                <div class="cont-body-prin mr-20px">
+                    <div class="cont-body-box-table">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="cell-align"><span class="icon-nav-table"><ion-icon name="git-merge-outline"></ion-icon></span></th>
+                                <th scope="col">Día</th>
+                                <th scope="col">Entrada</th>
+                                <th scope="col">Salida</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Recuperar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $cont = 1 ?>
+                            @if(isset($queryE) && isset($queryS))
+                                @foreach($queryE as $datae)
+                                    @foreach($queryS as $datas)
+                                        @if(date("Y-m-d", strtotime($datae->created_at)) == date("Y-m-d", strtotime($datas->created_at)))
+                                            <tr>
+                                                <th scope="row" class="cell-align">{{$cont++}}</th>
+                                                <td class="cell-align">{{date("Y-m-d", strtotime($datae->created_at))}}</td>
+                                                <td class="cell-align">{{date("H:i:s", strtotime($datae->created_at))}}</td>
+                                                <td class="cell-align">{{date("H:i:s", strtotime($datas->created_at))}}</td>
+                                                <td class="cell-align">{{'total'}}</td>
+                                                <td class="cell-align">{{'recuperar'}}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,6 @@ class CreateEntradasTable extends Migration
     {
         Schema::create('entradas', function (Blueprint $table) {
             $table->id();
-            $table->string('horas');
             $table->string('estado');
             $table->timestamps();
         });
