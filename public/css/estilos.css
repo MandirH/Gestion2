@@ -543,6 +543,19 @@ body{
     font-size: .8rem;
     padding-bottom: 10px !important;
 }
+.cell-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.td-green{
+    color: #819e34;
+    font-weight: 600;
+}
+.td-red{
+    color: #ff0000;
+    font-weight: 600;
+}
 
 @keyframes App-logo-spin-img {
     from {

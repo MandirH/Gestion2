@@ -682,7 +682,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $cont = 1 ?>
+                            <?php $cont = 1; $ArrayHoraA = array(); $ArrayMinA = array(); $ArraySegA = array(); $ArrayHoraB = array(); $ArrayMinB = array(); $ArraySegB = array();?>
                             @if(isset($queryE) && isset($queryS))
                                 @foreach($queryE as $datae)
                                     @foreach($queryS as $datas)
@@ -692,14 +692,147 @@
                                                 <td class="cell-align">{{date("Y-m-d", strtotime($datae->created_at))}}</td>
                                                 <td class="cell-align">{{date("H:i:s", strtotime($datae->created_at))}}</td>
                                                 <td class="cell-align">{{date("H:i:s", strtotime($datas->created_at))}}</td>
-                                                <td class="cell-align">{{'total'}}</td>
-                                                <td class="cell-align">{{'recuperar'}}</td>
+                                                <td class="cell-align">
+                                                    <?php
+                                                        $hora = abs(intval(date("H", strtotime($datas->created_at))) - intval(date("H:i:s", strtotime($datae->created_at))));
+                                                        $min = abs(intval(date("i", strtotime($datas->created_at))) - intval(date("i", strtotime($datae->created_at))));
+                                                        $seg = abs(intval(date("s", strtotime($datas->created_at))) - intval(date("s", strtotime($datae->created_at))));
+
+                                                        if($hora < 10 && $min < 10 && $seg < 10){
+                                                            echo '0' . $hora . ":0" . $min . ":0" . $seg;
+                                                        }elseif($hora < 10 && $min < 10){
+                                                            echo '0' . $hora . ":0" . $min . ":" . $seg;
+                                                        }elseif($min < 10 && $seg < 10){
+                                                            echo $hora . ":0" . $min . ":0" . $seg;
+                                                        }elseif($hora < 10){
+                                                            echo '0' . $hora . ":" . $min . ":" . $seg;
+                                                        }elseif($min < 10){
+                                                            echo $hora . ":0" . $min . ":" . $seg;
+                                                        }elseif($seg < 10){
+                                                            echo $hora . ":" . $min . ":0" . $seg;
+                                                        }else{
+                                                            echo $hora . ":" . $min . ":" . $seg;
+                                                        }
+
+                                                        array_push($ArrayHoraA, $hora);
+                                                        array_push($ArrayMinA, $min);
+                                                        array_push($ArraySegA, $seg);
+
+                                                        $sumSegMin = floor(array_sum($ArraySegA)/60);
+                                                        $sumSeg = array_sum($ArraySegA)%60;
+
+                                                        $sumMinHora = floor(array_sum($ArrayMinA)/60);
+                                                        $sumMin = array_sum($ArrayMinA)%60 + $sumSegMin;
+
+                                                        $sumHora = array_sum($ArrayHoraA) + $sumMinHora;
+                                                    ?>
+                                                </td>
+                                                <td class="cell-align">
+                                                    @foreach ($rcargo as $cargo)
+                                                        @if(Auth::user()->cargo == $cargo['nombre_cargo'])
+                                                            <?php
+                                                                $recS = 60 - $seg;
+                                                                $recM = 60 - $min;
+                                                                $recH = $cargo['horas_cargo'] - $hora -1;
+
+                                                                if($recS == 60){
+                                                                    $recS = 0;
+                                                                }
+
+                                                                if($recM == 60 && $recS == 60){
+                                                                    $resM = 0;
+                                                                }else{
+                                                                    $recM = 60 - $min -1;
+                                                                }
+
+                                                                if($recH < 10 && $recM < 10 && $recS < 10){
+                                                                    echo '0' . $recH . ":0" . $recM . ":0" . $recS;
+                                                                }elseif($recH < 10 && $recM < 10){
+                                                                    echo '0' . $recH . ":0" . $recM . ":" . $recS;
+                                                                }elseif($recM < 10 && $recS < 10){
+                                                                    echo $recH . ":0" . $recM . ":0" . $recS;
+                                                                }elseif($recH < 10){
+                                                                    echo '0' . $recH . ":" . $recM . ":" . $recS;
+                                                                }elseif($recM < 10){
+                                                                    echo $recH . ":0" . $recM . ":" . $recS;
+                                                                }elseif($recS < 10){
+                                                                    echo $recH . ":" . $recM . ":0" . $recS;
+                                                                }else{
+                                                                    echo $recH . ":" . $recM . ":" . $recS;
+                                                                }
+
+                                                                array_push($ArrayHoraB, $recH);
+                                                                array_push($ArrayMinB, $recM);
+                                                                array_push($ArraySegB, $recS);
+
+                                                                $sumSegMinB = floor(array_sum($ArraySegB)/60);
+                                                                $sumSegB = array_sum($ArraySegB)%60;
+
+                                                                $sumMinHoraB = floor(array_sum($ArrayMinB)/60);
+                                                                $sumMinB = array_sum($ArrayMinB)%60 + $sumSegMinB;
+
+                                                                $sumHoraB = array_sum($ArrayHoraB) + $sumMinHoraB;
+                                                            ?>
+                                                        @endif
+                                                    @endforeach
+                                                </td>
                                             </tr>
                                         @endif
                                     @endforeach
                                 @endforeach
                             @endif
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col" class="cell-align" colspan="4"><span class="cell-flex"><span class="icon-nav"><ion-icon name="git-network-outline"></ion-icon></span>TOTAL</span></th>
+                                    <td scope="col" class="td-green">
+                                        @if(isset($queryE) && isset($queryS))
+                                            <?php
+                                                if($sumHora < 10 && $sumMin < 10 && $sumSeg < 10){
+                                                    echo '0' . $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
+                                                }elseif($sumHora < 10 && $sumMin < 10){
+                                                    echo '0' . $sumHora . ":0" . $sumMin . ":" . $sumSeg;
+                                                }elseif($sumMin < 10 && $sumSeg < 10){
+                                                    echo $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
+                                                }elseif($sumHora < 10){
+                                                    echo '0' . $sumHora . ":" . $sumMin . ":" . $sumSeg;
+                                                }elseif($sumMin < 10){
+                                                    echo $sumHora . ":0" . $sumMin . ":" . $sumSeg;
+                                                }elseif($sumSeg < 10){
+                                                    echo $sumHora . ":" . $sumMin . ":0" . $sumSeg;
+                                                }else{
+                                                    echo $sumHora . ":" . $sumMin . ":" . $sumSeg;
+                                                }
+                                            ?>
+                                        @else
+                                            --:--:--
+                                        @endif
+                                    </td>
+                                    <td scope="col" class="td-red">
+                                        @if(isset($queryE) && isset($queryS))
+                                            <?php
+                                                if($sumHoraB < 10 && $sumMinB < 10 && $sumSegB < 10){
+                                                    echo '0' . $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
+                                                }elseif($sumHoraB < 10 && $sumMinB < 10){
+                                                    echo '0' . $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
+                                                }elseif($sumMin < 10 && $sumSeg < 10){
+                                                    echo $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
+                                                }elseif($sumHoraB < 10){
+                                                    echo '0' . $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
+                                                }elseif($sumMinB < 10){
+                                                    echo $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
+                                                }elseif($sumSegB < 10){
+                                                    echo $sumHoraB . ":" . $sumMinB . ":0" . $sumSegB;
+                                                }else{
+                                                    echo $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
+                                                }
+                                            ?>
+                                        @else
+                                            --:--:--
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
