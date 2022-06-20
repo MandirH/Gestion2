@@ -556,6 +556,20 @@ body{
     color: #ff0000;
     font-weight: 600;
 }
+.EnSaJusti{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: colum;
+}
+
+.cont-body-justificacion{
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.pd-20px{
+    padding-top: 20px !important;
+}
 
 @keyframes App-logo-spin-img {
     from {
@@ -610,6 +624,17 @@ body{
     }
     .box-home-registro{
         width: 90%;
+    }
+    .cont-body-justificacion{
+        
+        width: 90%;
+        max-width: 600px;
+        
+    }
+    .contenedor-justificaciones{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 }
 

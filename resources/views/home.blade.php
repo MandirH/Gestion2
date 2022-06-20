@@ -604,6 +604,7 @@
             </div>
         @endforeach
     @else
+    <div class="contenedor-EnSaJusti">
     <div class="contenedor-home justify-content-center">
             <div class="box-home box-home-left">
                 <div class="cont-form-cargo">
@@ -733,6 +734,20 @@
                 </div>
             </div>
         </div>
+        <div class="contenedor-justificaciones justify-content-center mr-20px">
+            <div class="cont-body-justificacion">
+                <div class="card-header card-header-mod pd-20px">
+                    JUSTIFICACIONES
+                    <img src="/img/entrada.png" alt="Register" class="login-img">
+                </div>
+
+                <div class="card-body">
+
+                </div>
+            </div>
+
+        </div>
+</div>
         <!-- Usuario -->
     @endif
 </div>
