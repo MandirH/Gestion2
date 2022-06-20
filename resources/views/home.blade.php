@@ -644,9 +644,23 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Marcar Asistencia') }}
-                                        </button>
+                                        <?php $cont = 0 ?>
+                                        @foreach($rentrada as $entrada)
+                                            @if($entrada['id_user'] == Auth::user()->id)
+                                                <?php $hoy = date("Y-m-d");?>
+                                                @if(date("Y-m-d", strtotime($entrada['created_at'])) == $hoy)
+                                                        <?php $cont++ ?>
+                                                    <button type="submit" class="btn btn-primary" disabled>
+                                                        {{ __('Asistencia Marcada') }}
+                                                    </button>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                        @if($cont == 0)
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Marcar Asistencia') }}
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -694,9 +708,23 @@
 
                                 <div class="row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Marcar Salida') }}
-                                        </button>
+                                        <?php $cont = 0 ?>
+                                        @foreach($rsalida as $salida)
+                                            @if($salida['id_user'] == Auth::user()->id)
+                                                <?php $hoy = date("Y-m-d");?>
+                                                @if(date("Y-m-d", strtotime($salida['created_at'])) == $hoy)
+                                                    <?php $cont++ ?>
+                                                        <button type="submit" class="btn btn-primary" disabled>
+                                                            {{ __('Salida Marcada') }}
+                                                        </button>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                        @if($cont == 0)
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Marcar Salida') }}
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </form>

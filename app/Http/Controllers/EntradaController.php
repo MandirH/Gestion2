@@ -16,7 +16,9 @@ class EntradaController extends Controller
     public function Mostrar()
     {
         $rentrada = Entrada::get();
-        return view('home', ['rentrada' => $rentrada]);
+        $rsalida = Salida::get();
+
+        return view('home', ['rentrada' => $rentrada, 'rsalida' => $rsalida]);
     }
 
     public function Crear(Request $request)
