@@ -195,7 +195,7 @@
                                 <tr>
                                     <th scope="row" class="cell-align">{{$usuario['id']}}</th>
                                     <td class="cell-align">{{$usuario['nombre']}}</td>
-                                    <td class="cell-align">{{$usuario['apellido']}} Horas</td>
+                                    <td class="cell-align">{{$usuario['apellido']}}</td>
                                     <td class="cell-align display-off">{{$usuario['cargo']}}</td>
                                     <td class="cell-align">
                                         <button type="submit" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#ModalPlanta{{$usuario['id']}}">

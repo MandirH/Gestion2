@@ -735,19 +735,83 @@
             </div>
         </div>
         <div class="contenedor-justificaciones justify-content-center mr-20px">
-            <div class="cont-body-justificacion">
+            <div class="cont-body-justificacion mr-20px-activate">
                 <div class="card-header card-header-mod pd-20px">
                     JUSTIFICACIONES
                     <img src="/img/entrada.png" alt="Register" class="login-img">
                 </div>
 
-                <div class="card-body">
+                <div class="card-body bg-white">
+                    <div class="d-flex justify-content-md-around">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#JustificarInasistencia">
+                            inacistencia
+                        </button>
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#JustificarTardanza">
+                            tardanza
+                        </button>
+                    </div>
 
                 </div>
             </div>
 
         </div>
-</div>
+
+        <div class="card-body">
+            <div class="modal fade" id="JustificarInasistencia" tabindex="-1" role="dialog" aria-labelledby="JustificarInasistenciaTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Inasistencia</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body ">
+                        <div class="card-body ">
+                            <label for="queja">Motivo :</label>
+                            <textarea class="form-control" id="queja" rows="4"></textarea>
+                        </div>
+                        <div class="card-body">
+                            <label for="subirArchivo">Adjuntar Comprobante :</label>
+                            <input type="file" class="form-control-file" id="subirArchivo">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="modal fade" id="JustificarTardanza" tabindex="-1" role="dialog" aria-labelledby="JustificarTardanzaTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Tardanza</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body ">
+                        <div class="card-body ">
+                            <label for="queja">Motivo :</label>
+                            <textarea class="form-control" id="queja" rows="4"></textarea>
+                        </div>
+                        <div class="card-body">
+                            <label for="subirArchivo">Adjuntar Comprobante :</label>
+                            <input type="file" class="form-control-file" id="subirArchivo">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <!-- Usuario -->
     @endif
 </div>

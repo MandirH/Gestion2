@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EntradaController;
+use App\Http\Controllers\JustificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,3 +87,7 @@ Route::post('/registro-date', [App\Http\Controllers\EntradaController::class, 'b
 /* ---- SALIDAS ---- */
 
 Route::post('/salida-crear', [SalidaController::class, 'Crear'])->name('salida-crear');
+
+/* ---- SALIDAS ---- */
+
+Route::post('/justificacion-crear', [JustificacionController::class, 'Crear'])->name('justificacion-crear');

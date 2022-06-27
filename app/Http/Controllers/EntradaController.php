@@ -9,6 +9,8 @@ use App\Models\EntradaCargo;
 use App\Models\SalidaCargo;
 use App\Models\Salida;
 use Illuminate\Support\Facades\DB;
+use App\Models\Justificacion;
+
 
 class EntradaController extends Controller
 {
@@ -17,8 +19,9 @@ class EntradaController extends Controller
     {
         $rentrada = Entrada::get();
         $rsalida = Salida::get();
+        $rjust = Justificacion::get();
 
-        return view('home', ['rentrada' => $rentrada, 'rsalida' => $rsalida]);
+        return view('home', ['rentrada' => $rentrada, 'rsalida' => $rsalida, 'rjust' => $rjust]);
     }
 
     public function Crear(Request $request)
