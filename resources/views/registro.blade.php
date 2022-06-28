@@ -787,46 +787,54 @@
                                     <th scope="col" class="cell-align" colspan="4"><span class="cell-flex"><span class="icon-nav"><ion-icon name="git-network-outline"></ion-icon></span>TOTAL</span></th>
                                     <td scope="col" class="td-green">
                                         @if(isset($queryE) && isset($queryS))
-                                            <?php
-                                                if($sumHora < 10 && $sumMin < 10 && $sumSeg < 10){
-                                                    echo '0' . $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
-                                                }elseif($sumHora < 10 && $sumMin < 10){
-                                                    echo '0' . $sumHora . ":0" . $sumMin . ":" . $sumSeg;
-                                                }elseif($sumMin < 10 && $sumSeg < 10){
-                                                    echo $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
-                                                }elseif($sumHora < 10){
-                                                    echo '0' . $sumHora . ":" . $sumMin . ":" . $sumSeg;
-                                                }elseif($sumMin < 10){
-                                                    echo $sumHora . ":0" . $sumMin . ":" . $sumSeg;
-                                                }elseif($sumSeg < 10){
-                                                    echo $sumHora . ":" . $sumMin . ":0" . $sumSeg;
-                                                }else{
-                                                    echo $sumHora . ":" . $sumMin . ":" . $sumSeg;
-                                                }
-                                            ?>
+                                            @if(!empty($sumHora) || !empty($sumMin) || !empty($sumSeg))
+                                                <?php
+                                                    if($sumHora < 10 && $sumMin < 10 && $sumSeg < 10){
+                                                        echo '0' . $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
+                                                    }elseif($sumHora < 10 && $sumMin < 10){
+                                                        echo '0' . $sumHora . ":0" . $sumMin . ":" . $sumSeg;
+                                                    }elseif($sumMin < 10 && $sumSeg < 10){
+                                                        echo $sumHora . ":0" . $sumMin . ":0" . $sumSeg;
+                                                    }elseif($sumHora < 10){
+                                                        echo '0' . $sumHora . ":" . $sumMin . ":" . $sumSeg;
+                                                    }elseif($sumMin < 10){
+                                                        echo $sumHora . ":0" . $sumMin . ":" . $sumSeg;
+                                                    }elseif($sumSeg < 10){
+                                                        echo $sumHora . ":" . $sumMin . ":0" . $sumSeg;
+                                                    }else{
+                                                        echo $sumHora . ":" . $sumMin . ":" . $sumSeg;
+                                                    }
+                                                ?>
+                                            @else
+                                                --:--:--
+                                            @endif
                                         @else
                                             --:--:--
                                         @endif
                                     </td>
                                     <td scope="col" class="td-red">
                                         @if(isset($queryE) && isset($queryS))
-                                            <?php
-                                                if($sumHoraB < 10 && $sumMinB < 10 && $sumSegB < 10){
-                                                    echo '0' . $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
-                                                }elseif($sumHoraB < 10 && $sumMinB < 10){
-                                                    echo '0' . $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
-                                                }elseif($sumMin < 10 && $sumSeg < 10){
-                                                    echo $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
-                                                }elseif($sumHoraB < 10){
-                                                    echo '0' . $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
-                                                }elseif($sumMinB < 10){
-                                                    echo $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
-                                                }elseif($sumSegB < 10){
-                                                    echo $sumHoraB . ":" . $sumMinB . ":0" . $sumSegB;
-                                                }else{
-                                                    echo $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
-                                                }
-                                            ?>
+                                            @if(!empty($sumHoraB) || !empty($sumMinB) || !empty($sumSegB))
+                                                <?php
+                                                    if($sumHoraB < 10 && $sumMinB < 10 && $sumSegB < 10){
+                                                        echo '0' . $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
+                                                    }elseif($sumHoraB < 10 && $sumMinB < 10){
+                                                        echo '0' . $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
+                                                    }elseif($sumMin < 10 && $sumSeg < 10){
+                                                        echo $sumHoraB . ":0" . $sumMinB . ":0" . $sumSegB;
+                                                    }elseif($sumHoraB < 10){
+                                                        echo '0' . $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
+                                                    }elseif($sumMinB < 10){
+                                                        echo $sumHoraB . ":0" . $sumMinB . ":" . $sumSegB;
+                                                    }elseif($sumSegB < 10){
+                                                        echo $sumHoraB . ":" . $sumMinB . ":0" . $sumSegB;
+                                                    }else{
+                                                        echo $sumHoraB . ":" . $sumMinB . ":" . $sumSegB;
+                                                    }
+                                                ?>
+                                            @else
+                                                --:--:--
+                                            @endif
                                         @else
                                             --:--:--
                                         @endif
