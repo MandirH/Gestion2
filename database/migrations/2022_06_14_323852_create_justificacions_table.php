@@ -15,8 +15,10 @@ class CreateJustificacionsTable extends Migration
     {
         Schema::create('justificacions', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo');
             $table->string('titulo');
             $table->string('mensaje');
+            $table->string('adjunto')->nullable();
             $table->timestamps();
         });
         Schema::table('justificacions', function (Blueprint $table) {

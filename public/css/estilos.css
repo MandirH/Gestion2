@@ -403,7 +403,7 @@ body{
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    align-items: flex-start;
 }
 .box-home{
     width: 50%;
@@ -567,6 +567,7 @@ body{
     border: 1px solid rgba(0, 0, 0, 0.125);
     width: 90%;
     max-width: 900px;
+    margin: auto;
     background: #fff;
     border-radius: .25rem;
     padding: 20px 20px 0 20px;
@@ -574,6 +575,90 @@ body{
 
 .pd-20px{
     padding-top: 20px !important;
+}
+.input-mg-boton{
+    margin-bottom: 10px;
+}
+.mr-auto{
+    margin: 0 auto 1rem auto;
+}
+.cont-box-j{
+    width: 100%;
+    margin-bottom: 20px;
+    background: #4b0054;
+    padding: 10px;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-j{
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+.cont-j{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.mr-10px-left{
+    margin-left: 10px;
+}
+.display-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mr-buton-left{
+    margin-right: 5px;
+}
+.mr-buton-right{
+    margin-left:  5px;
+}
+.icon-nav-button{
+    padding: .25rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.badge-j{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background: #b5ff02;
+    color: #000;
+    border-radius: 0.25rem;
+    font-size: .8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.cont-body-prin-j{
+    max-height: 423px;
+    overflow: auto;
+}
+.mr-auto-j{
+    margin: 1rem auto;
+}
+.img-modal-j{
+    width: 100%;
+    padding-bottom: 20px;
+}
+.img-modal-j img{
+    width: 100%;
+    border-radius: .25rem;
+}
+.title-modal-j{
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: #3a295a;
+    padding: 0 0 20px 0;
+    text-align: center;
 }
 
 @keyframes App-logo-spin-img {
@@ -631,10 +716,10 @@ body{
         width: 90%;
     }
     .cont-body-justificacion{
-        
+
         width: 90%;
         max-width: 600px;
-        
+
     }
     .contenedor-justificaciones{
         display: flex;

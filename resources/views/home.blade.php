@@ -643,27 +643,23 @@
 
                                 <input type="hidden" name="id" value="{{Auth::user()->id}}">
 
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <?php $cont = 0 ?>
-                                        @foreach($rentrada as $entrada)
-                                            @if($entrada['id_user'] == Auth::user()->id)
-                                                <?php $hoy = date("Y-m-d");?>
-                                                @if(date("Y-m-d", strtotime($entrada['created_at'])) == $hoy)
-                                                        <?php $cont++ ?>
-                                                    <button type="submit" class="btn btn-primary" disabled>
-                                                        {{ __('Asistencia Marcada') }}
-                                                    </button>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                        @if($cont == 0)
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Marcar Asistencia') }}
+                                <?php $cont = 0 ?>
+                                @foreach($rentrada as $entrada)
+                                    @if($entrada['id_user'] == Auth::user()->id)
+                                        <?php $hoy = date("Y-m-d");?>
+                                        @if(date("Y-m-d", strtotime($entrada['created_at'])) == $hoy)
+                                            <?php $cont++ ?>
+                                            <button type="submit" class="btn btn-primary w-100 display-flex" disabled>
+                                                <span class="icon-nav"><ion-icon name="time"></ion-icon></span>{{ __('Asistencia Marcada') }}
                                             </button>
                                         @endif
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
+                                @if($cont == 0)
+                                    <button type="submit" class="btn btn-primary w-100 display-flex">
+                                        <span class="icon-nav"><ion-icon name="time"></ion-icon></span>{{ __('Marcar Asistencia') }}
+                                    </button>
+                                @endif
                             </form>
                         </div>
                     </div>
@@ -707,51 +703,94 @@
 
                                 <input type="hidden" name="id" value="{{Auth::user()->id}}">
 
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <?php $cont = 0 ?>
-                                        @foreach($rsalida as $salida)
-                                            @if($salida['id_user'] == Auth::user()->id)
-                                                <?php $hoy = date("Y-m-d");?>
-                                                @if(date("Y-m-d", strtotime($salida['created_at'])) == $hoy)
-                                                    <?php $cont++ ?>
-                                                        <button type="submit" class="btn btn-primary" disabled>
-                                                            {{ __('Salida Marcada') }}
-                                                        </button>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                        @if($cont == 0)
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('Marcar Salida') }}
+                                <?php $cont = 0 ?>
+                                @foreach($rsalida as $salida)
+                                    @if($salida['id_user'] == Auth::user()->id)
+                                        <?php $hoy = date("Y-m-d");?>
+                                        @if(date("Y-m-d", strtotime($salida['created_at'])) == $hoy)
+                                            <?php $cont++ ?>
+                                            <button type="submit" class="btn btn-primary w-100 display-flex" disabled>
+                                                <span class="icon-nav"><ion-icon name="time"></ion-icon></span>{{ __('Salida Marcada') }}
                                             </button>
                                         @endif
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
+                                @if($cont == 0)
+                                    <button type="submit" class="btn btn-primary w-100 display-flex">
+                                        <span class="icon-nav"><ion-icon name="time"></ion-icon></span>{{ __('Marcar Salida') }}
+                                    </button>
+                                @endif
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="contenedor-justificaciones justify-content-center mr-20px">
-            <div class="cont-body-justificacion mr-20px-activate">
-                <div class="card-header card-header-mod pd-20px">
-                    JUSTIFICACIONES
-                    <img src="/img/entrada.png" alt="Register" class="login-img">
-                </div>
+        <div class="contenedor-home justify-content-center">
+            <div class="box-home box-home-left">
+                <div class="cont-form-cargo">
+                    @if(session('status'))
+                        @if(session('status')=='Justificación Creada!')
+                            <div class="alert alert-esp alert-primary alert-dismissible fade show mr-auto-j" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">REGISTRADA!</strong> justificación registrada.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @elseif(session('status')=='Justificación Actualizada!')
+                            <div class="alert alert-esp alert-success alert-dismissible fade show mr-auto-j" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ACTUALIZADA!</strong> justificación actualizada.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @elseif(session('status')=='Justificación Eliminada!')
+                            <div class="alert alert-esp alert-danger alert-dismissible fade show mr-auto-j" role="alert">
+                                <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span><strong class="icon-nav">ELIMINADO!</strong> justificación eliminada.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                    @endif
+                    <div class="cont-body-prin mr-20px">
+                        <div class="card-header card-header-mod pd-20px">
+                            JUSTIFICACIONES
+                            <img src="/img/justificacion.png" alt="Register" class="login-img">
+                        </div>
 
-                <div class="card-body bg-white">
-                    <div class="d-flex justify-content-md-around">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#JustificarInasistencia">
-                            inacistencia
-                        </button>
+                        <div class="card-body bg-white">
+                            <div class="d-flex justify-content-md-around">
+                                <button type="button" class="btn btn-primary display-flex w-50 mr-buton-left" data-toggle="modal" data-target="#JustificarInasistencia">
+                                    <span class="icon-nav"><ion-icon name="reader"></ion-icon></span>Inacistencia
+                                </button>
 
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#JustificarTardanza">
-                            tardanza
-                        </button>
+                                <button type="button" class="btn btn-primary display-flex w-50 mr-buton-right" data-toggle="modal" data-target="#JustificarTardanza">
+                                    <span class="icon-nav"><ion-icon name="reader"></ion-icon></span>Tardanza
+                                </button>
+                            </div>
+                        </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="box-home box-home-right">
+                <div class="cont-form-cargo">
+                    <div class="cont-body-prin mr-20px cont-body-prin-j">
+                        @foreach($rjust as $justificacion)
+                            @if($justificacion['id_user'] == Auth::user()->id)
+                                <div class="cont-box-j">
+                                    <div class="title-j">
+                                        <span class="icon-nav"><ion-icon name="mail"></ion-icon></span>{{$justificacion['tipo']}}
+                                        <div class="badge-j">
+                                            {{date('Y-m-d', strtotime($justificacion['created_at']))}}
+                                        </div>
+                                    </div>
+                                    <div class="cont-j">
+                                        <button type="button" class="btn btn-primary display-flex" data-toggle="modal" data-target="#Justificar{{$justificacion['id']}}">
+                                            <span class="icon-nav-button"><ion-icon name="pencil"></ion-icon></span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger mr-10px-left display-flex" data-toggle="modal" data-target="#JustificarE{{$justificacion['id']}}">
+                                            <span class="icon-nav-button"><ion-icon name="trash"></ion-icon></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -768,18 +807,47 @@
                             </button>
                         </div>
                         <div class="modal-body ">
-                        <div class="card-body ">
-                            <label for="queja">Motivo :</label>
-                            <textarea class="form-control" id="queja" rows="4"></textarea>
+                            <div class="card-body ">
+                                <form method="POST" action="{{ route('justificacion-crear') }}" enctype="multipart/form-data" id="form-just-in">
+                                    @csrf
+
+                                    <div class="input-mg-boton">
+                                        <label for="titulo">Titulo</label>
+                                        <input type="text" class="form-control @error('titulo') is-invalid @enderror" id="titulo" name="titulo" required autocomplete="titulo" autofocus>
+                                        <input type='hidden' name='id' value='{{Auth::user()->id}}'>
+                                        <input type='hidden' name='tipo' value='Inasistencia'>
+                                        @error('titulo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="input-mg-boton">
+                                        <label for="mensaje">Motivo :</label>
+                                        <textarea class="form-control @error('mensaje') is-invalid @enderror" id="mensaje" name="mensaje" rows="4" required autocomplete="mensaje" autofocus></textarea>
+
+                                        @error('mensaje')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <label for="adjunto">Adjuntar Comprobante :</label>
+                                    <input type="file" class="form-control-file @error('adjunto') is-invalid @enderror" name="adjunto"  id="adjunto" autocomplete="adjunto" autofocus>
+                                    @error('adjunto')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </form>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <label for="subirArchivo">Adjuntar Comprobante :</label>
-                            <input type="file" class="form-control-file" id="subirArchivo">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" form="form-just-in" class="btn btn-primary">Enviar</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -795,22 +863,156 @@
                             </button>
                         </div>
                         <div class="modal-body ">
-                        <div class="card-body ">
-                            <label for="queja">Motivo :</label>
-                            <textarea class="form-control" id="queja" rows="4"></textarea>
+                            <div class="card-body ">
+                                <form method="POST" action="{{ route('justificacion-crear') }}" enctype="multipart/form-data" id="form-just-ta">
+                                    @csrf
+
+                                    <div class="input-mg-boton">
+                                        <label for="titulo">Titulo</label>
+                                        <input type="text" class="form-control @error('titulo') is-invalid @enderror" id="titulo" name="titulo" required autocomplete="titulo" autofocus>
+                                        <input type='hidden' name='id' value='{{Auth::user()->id}}'>
+                                        <input type='hidden' name='tipo' value='Tardanza'>
+                                        @error('titulo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="input-mg-boton">
+                                        <label for="mensaje">Motivo :</label>
+                                        <textarea class="form-control @error('mensaje') is-invalid @enderror" id="mensaje" name="mensaje" rows="4" required autocomplete="mensaje" autofocus></textarea>
+
+                                        @error('mensaje')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <label for="adjunto">Adjuntar Comprobante :</label>
+                                    <input type="file" class="form-control-file @error('adjunto') is-invalid @enderror" name="adjunto"  id="adjunto" autocomplete="adjunto" autofocus>
+                                    @error('adjunto')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </form>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <label for="subirArchivo">Adjuntar Comprobante :</label>
-                            <input type="file" class="form-control-file" id="subirArchivo">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" form="form-just-ta" class="btn btn-primary">Enviar</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Enviar</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- MODAL JUSTIFICACION EDITAR -->
+
+        @foreach($rjust as $justificacion)
+            @if($justificacion['id_user'] == Auth::user()->id)
+                <div class="modal fade" id="Justificar{{$justificacion['id']}}" tabindex="-1" role="dialog" aria-labelledby="JustificarTardanzaTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{$justificacion['tipo']}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body ">
+                                <div class="card-body ">
+                                    <div class="img-modal-j">
+                                        @if($justificacion['adjunto'] == '')
+                                            <img src="/img/justificacion-no-img.png" alt="justificacion">
+                                        @else
+                                            <img src="{{asset("storage/".$justificacion['adjunto'])}}" alt="justificacion">
+                                        @endif
+                                    </div>
+                                    <form method="POST" action="{{ route('justificacion-editar') }}" enctype="multipart/form-data" id="form-just-ta{{$justificacion['id']}}">
+                                        @csrf
+
+                                        <div class="input-mg-boton">
+                                            <label for="titulo">Titulo</label>
+                                            <input type="text" class="form-control @error('titulo') is-invalid @enderror" value="{{$justificacion['titulo']}}" id="titulo{{$justificacion['id']}}" name="titulo" required autocomplete="titulo" autofocus>
+                                            <input type='hidden' name='id' value='{{Auth::user()->id}}'>
+                                            <input type='hidden' name='id_justificacion' value='{{$justificacion['id']}}'>
+                                            <input type='hidden' name='tipo' value='{{$justificacion['tipo']}}'>
+                                            @error('titulo')
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-mg-boton">
+                                            <label for="mensaje">Motivo :</label>
+                                            <input type="text" class="form-control @error('mensaje') is-invalid @enderror" id="mensaje{{$justificacion['id']}}" value="{{$justificacion['mensaje']}}" name="mensaje" rows="4" required autocomplete="mensaje" autofocus>
+
+                                            @error('mensaje')
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <label for="adjunto">Adjuntar Comprobante :</label>
+                                        <input type="file" class="form-control-file @error('adjunto') is-invalid @enderror" name="adjunto"  id="adjunto" autocomplete="adjunto" autofocus>
+                                        @error('adjunto')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" form="form-just-ta{{$justificacion['id']}}" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+
+    <!-- MODAL JUSTIFICACION ELIMINAR -->
+
+        @foreach($rjust as $justificacion)
+            @if($justificacion['id_user'] == Auth::user()->id)
+                <div class="modal fade" id="JustificarE{{$justificacion['id']}}" tabindex="-1" role="dialog" aria-labelledby="JustificarTardanzaTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Borrar justificación</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body ">
+                                <div class="card-body ">
+                                    <div class="title-modal-j">¿Esta seguro?</div>
+                                    <div class="img-modal-j">
+                                        <img src="/img/03.jpg" alt="justificacion-eliminar">
+                                    </div>
+                                    <form method="POST" action="{{ route('justificacion-eliminar') }}" enctype="multipart/form-data" id="form-just-ta-E{{$justificacion['id']}}">
+                                        @csrf
+
+                                        <input type='hidden' name='id_justificacion' value='{{$justificacion['id']}}'>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" form="form-just-ta-E{{$justificacion['id']}}" class="btn btn-danger">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
     </div>
         <!-- Usuario -->
     @endif
