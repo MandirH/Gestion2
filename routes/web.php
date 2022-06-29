@@ -96,6 +96,7 @@ Route::post('/justificacion-editar', [JustificacionController::class, 'Editar'])
 Route::post('/justificacion-eliminar', [JustificacionController::class, 'Eliminar'])->name('justificacion-eliminar');
 
 /* ---- JUSTIFICACION ADMIN ---- */
+/* cambios */
 
 Route::get('/justificaciones', [JustificacionController::class, 'Mostrar'])->name('justificacion-mostrar');
 Route::post('/respuesta-crear', [RespuestaController::class, 'Aceptar'])->name('respuesta-crear');
