@@ -780,12 +780,36 @@
                                         </div>
                                     </div>
                                     <div class="cont-j">
-                                        <button type="button" class="btn btn-primary display-flex" data-toggle="modal" data-target="#Justificar{{$justificacion['id']}}">
-                                            <span class="icon-nav-button"><ion-icon name="pencil"></ion-icon></span>
-                                        </button>
-                                        <button type="button" class="btn btn-danger mr-10px-left display-flex" data-toggle="modal" data-target="#JustificarE{{$justificacion['id']}}">
-                                            <span class="icon-nav-button"><ion-icon name="trash"></ion-icon></span>
-                                        </button>
+                                    <?php $validacion = 0; ?>
+                                        @foreach($rresp as $respuesta)
+                                            @if($respuesta['id_justificacion']==$justificacion['id'])
+                                                <?php $validacion = 1; ?>
+                                            @endif
+                                        @endforeach
+                                            @if($validacion==0)
+                                                <button type="button" class="btn btn-primary display-flex" data-toggle="modal" data-target="#Justificar{{$justificacion['id']}}">
+                                                    <span class="icon-nav-button"><ion-icon name="pencil"></ion-icon></span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger mr-10px-left display-flex" data-toggle="modal" data-target="#JustificarE{{$justificacion['id']}}">
+                                                    <span class="icon-nav-button"><ion-icon name="trash"></ion-icon></span>
+                                                </button>
+                                            @endif
+                                        @foreach($rresp as $respuesta)
+                                            @if($validacion==1)
+                                                @if($respuesta['id_justificacion']==$justificacion['id'])
+                                                    @if($respuesta['aceptacion']=='aceptado')
+                                                    <button type="button" class="btn btn-success display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
+                                                        <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span>ACEPTADO!
+                                                    </button>
+                                                    @else
+                                                    <button type="button" class="btn btn-danger display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
+                                                        <span class="icon-nav"><ion-icon name="close-circle"></ion-icon></span>DENEGADO!
+                                                    </button>
+                                                    @endif                                                         
+                                                @endif                                                                    
+                                            @endif
+                                        @endforeach
+                                        
                                     </div>
                                 </div>
                             @endif

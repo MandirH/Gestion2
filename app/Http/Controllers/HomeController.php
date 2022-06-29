@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Entrada;
 use App\Models\Salida;
 use App\Models\Justificacion;
-
+use App\Models\Respuesta;
 class HomeController extends Controller
 {
     /**
@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $rresp = Respuesta::get();
         $rcargo = Cargo::get();
         $rentradac = EntradaCargo::get();
         $rsalidac = SalidaCargo::get();
@@ -36,6 +37,6 @@ class HomeController extends Controller
         $rsalida = Salida::get();
         $rjust = Justificacion::get();
 
-        return view('/home' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac , "rentrada"=>$rentrada, "rsalida"=>$rsalida, 'rjust' => $rjust]);
+        return view('/home' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac , "rentrada"=>$rentrada, "rsalida"=>$rsalida, 'rjust' => $rjust, 'rresp' => $rresp]);
     }
 }

@@ -90,11 +90,11 @@
                                                                     @if($respuesta['id_justificacion']==$justificacion['id'])
                                                                         @if($respuesta['aceptacion']=='aceptado')
                                                                         <button type="button" class="btn btn-success display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
-                                                                            <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>ACEPTADO!
+                                                                            <span class="icon-nav"><ion-icon name="checkmark-circle"></ion-icon></span>ACEPTADO!
                                                                         </button>
                                                                         @else
                                                                         <button type="button" class="btn btn-danger display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
-                                                                            <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>DENEGADO!
+                                                                            <span class="icon-nav"><ion-icon name="close-circle"></ion-icon></span>DENEGADO!
                                                                         </button>
                                                                         @endif                                                         
                                                                     @endif                                                                    
