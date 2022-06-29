@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @if(Auth::user()->cargo == 'Administrador')
+    @if(Auth::user()->cargo == 1)
         <div class="contenedor-home justify-content-center">
             <div class="box-home box-home-left">
                 <div class="cont-form-cargo">

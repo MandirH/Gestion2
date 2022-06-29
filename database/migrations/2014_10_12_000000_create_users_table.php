@@ -41,7 +41,7 @@ class CreateUsersTable extends Migration
         $user->direccion = 'None';
         $user->email = 'Admin@laravel.com';
         $user->password = Hash::make('12345678');
-        $user->cargo = 'Administrador';
+        $user->cargo = 1;
         $user->estado = 'Activo';
         $user->Save();
     }

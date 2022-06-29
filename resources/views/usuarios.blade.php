@@ -108,7 +108,7 @@
                                     <div class="col-md-6">
                                         <select id="nombre_cargo" aria-label="Default select example" class="form-control @error('nombre_cargo') is-invalid @enderror" name="nombre_cargo" value="{{ old('nombre_cargo') }}" required autocomplete="producto_categoria" autofocus>
                                             @foreach ($rcargo as $cargo)
-                                                <option value={{$cargo->nombre_cargo}}>{{$cargo->nombre_cargo}}</option>
+                                                <option value={{$cargo['id']}}>{{$cargo['nombre_cargo']}}</option>
                                             @endforeach
                                         </select>
 
@@ -196,7 +196,13 @@
                                     <th scope="row" class="cell-align">{{$usuario['id']}}</th>
                                     <td class="cell-align">{{$usuario['nombre']}}</td>
                                     <td class="cell-align">{{$usuario['apellido']}}</td>
-                                    <td class="cell-align display-off">{{$usuario['cargo']}}</td>
+                                    <td class="cell-align display-off">
+                                        @foreach($rcargo as $cargo)
+                                            @if($cargo['id'] == $usuario['cargo'])
+                                                {{$cargo['nombre_cargo']}}
+                                            @endif
+                                        @endforeach
+                                    </td>
                                     <td class="cell-align">
                                         <button type="submit" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#ModalPlanta{{$usuario['id']}}">
                                             <span class="icon-nav"><ion-icon name="create-outline"></ion-icon></span>{{ __('Editar') }}
@@ -321,9 +327,9 @@
                                             <select id="nombre_cargo{{$usuario["id"]}}" aria-label="Default select example" class="form-control @error('nombre_cargo') is-invalid @enderror" name="nombre_cargo" required autofocus>
                                                 @foreach($rcargo as $cargo)
                                                     @if($cargo['nombre_cargo'] == $usuario['cargo'])
-                                                        <option value={{$cargo['nombre_cargo']}} selected>{{$cargo['nombre_cargo']}}</option>
+                                                        <option value={{$cargo['id']}} selected>{{$cargo['nombre_cargo']}}</option>
                                                     @else
-                                                        <option value={{$cargo['nombre_cargo']}}>{{$cargo['nombre_cargo']}}</option>
+                                                        <option value={{$cargo['id']}}>{{$cargo['nombre_cargo']}}</option>
                                                     @endif
 
                                                 @endforeach

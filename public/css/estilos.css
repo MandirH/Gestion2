@@ -661,6 +661,106 @@ body{
     text-align: center;
 }
 
+/* ---- MENU JUSTIFICACION ---- */
+
+.cont-just{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-just{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ul-just{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    background-color: #fff;
+    border-radius: .25rem;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.ul-just-menu{
+    /*height: 80vh;*/
+    overflow: auto;
+}
+.li-just{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 10px;
+    background: #1d346d;
+    color: #fff;
+    border-radius: .25rem;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.btn-li-just{
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
+}
+.btn-li-just:hover{
+    text-decoration: none;
+    color: #e0adff !important;
+}
+.li-just-c{
+    background: #fff0 !important;
+    color: #1d346d;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0;
+}
+.cont-just-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.li-just-user{
+    background: #2e51a5;
+}
+.menu-just-j{
+    width: 600px;
+}
+.ul-just-j{
+    max-width: 600px;
+    width: 100%;
+    overflow: auto;
+}
+.modal-dialog-j{
+    max-width: 800px;
+}
+.card-box{
+    width: 100%;
+    padding: 20px;
+}
+.card-title-j{
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.card-text-j{
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+.img-modal-j-j{
+    max-width: 500px;
+    margin: auto;
+}
+
 @keyframes App-logo-spin-img {
     from {
         transform: rotate(0deg);
@@ -716,15 +816,35 @@ body{
         width: 90%;
     }
     .cont-body-justificacion{
-
         width: 90%;
         max-width: 600px;
-
     }
     .contenedor-justificaciones{
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+    .cont-just{
+        flex-direction: column;
+    }
+    .cont-just-box {
+        width: 100%;
+    }
+    .menu-just{
+        width: 100%;
+        margin: auto;
+    }
+    .menu-just-activate{
+        width: 100%;
+    }
+    .collapse-cont{
+        width: 100%;
+    }
+    .menu-just-j{
+        width: 100%;
+    }
+    .ul-just-j{
+        max-width: 100%;
     }
 }
 
@@ -772,6 +892,9 @@ body{
     .input-date-button{
         width: 100%;
         padding: 20px 0 0 0 !important;
+    }
+    .card-title-j{
+        font-size: 1.2rem;
     }
 }
 

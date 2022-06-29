@@ -93,3 +93,7 @@ Route::post('/salida-crear', [SalidaController::class, 'Crear'])->name('salida-c
 Route::post('/justificacion-crear', [JustificacionController::class, 'Crear'])->name('justificacion-crear');
 Route::post('/justificacion-editar', [JustificacionController::class, 'Editar'])->name('justificacion-editar');
 Route::post('/justificacion-eliminar', [JustificacionController::class, 'Eliminar'])->name('justificacion-eliminar');
+
+/* ---- JUSTIFICACION ADMIN ---- */
+
+Route::get('/justificaciones', [JustificacionController::class, 'Mostrar'])->name('justificacion-mostrar');

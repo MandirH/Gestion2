@@ -50,7 +50,7 @@
                 @guest
 
                 @else
-                    @if(Auth::user()->cargo == 'Administrador')
+                    @if(Auth::user()->cargo == 1)
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a class="nav-link color-white nav-prin" href="/home"><span class="icon-nav"><ion-icon name="home"></ion-icon></span>{{ __('Home') }}</a>
