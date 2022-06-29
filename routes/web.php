@@ -9,6 +9,7 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EntradaController;
 use App\Http\Controllers\JustificacionController;
+use App\Http\Controllers\RespuestaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,3 +98,4 @@ Route::post('/justificacion-eliminar', [JustificacionController::class, 'Elimina
 /* ---- JUSTIFICACION ADMIN ---- */
 
 Route::get('/justificaciones', [JustificacionController::class, 'Mostrar'])->name('justificacion-mostrar');
+Route::post('/respuesta-crear', [RespuestaController::class, 'Aceptar'])->name('respuesta-crear');

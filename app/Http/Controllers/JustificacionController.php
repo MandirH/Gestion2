@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cargo;
 use App\Models\Justificacion;
 use App\Models\User;
+use App\Models\Respuesta;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,11 @@ class JustificacionController extends Controller
     public function Mostrar()
     {
         $rjust = Justificacion::get();
+        $rresp = Respuesta::get();
         $rcargo = Cargo::get();
         $ruser = User::get();
 
-        return view('justificaciones' , ["rjust" => $rjust, "rcargo" => $rcargo, "ruser" => $ruser]);
+        return view('justificaciones' , ["rjust" => $rjust, "rcargo" => $rcargo, "ruser" => $ruser, "rresp"=>$rresp]);
     }
     public function Crear(Request $request)
     {

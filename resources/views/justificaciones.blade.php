@@ -74,9 +74,32 @@
                                                             </div>
                                                         </div>
                                                         <div class="cont-j">
-                                                            <button type="button" class="btn btn-primary display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}">
-                                                                <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>Responder
-                                                            </button>
+                                                            <?php $validacion = 0; ?>
+                                                            @foreach($rresp as $respuesta)
+                                                                @if($respuesta['id_justificacion']==$justificacion['id'])
+                                                                    <?php $validacion = 1; ?>
+                                                                @endif
+                                                            @endforeach
+                                                                @if($validacion==0)
+                                                                    <button type="button" class="btn btn-primary display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}">
+                                                                        <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>Responder
+                                                                    </button>
+                                                                @endif
+                                                            @foreach($rresp as $respuesta)
+                                                                @if($validacion==1)
+                                                                    @if($respuesta['id_justificacion']==$justificacion['id'])
+                                                                        @if($respuesta['aceptacion']=='aceptado')
+                                                                        <button type="button" class="btn btn-success display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
+                                                                            <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>ACEPTADO!
+                                                                        </button>
+                                                                        @else
+                                                                        <button type="button" class="btn btn-danger display-flex" data-toggle="modal" data-target="#JustificarR{{$justificacion['id']}}" disabled>
+                                                                            <span class="icon-nav"><ion-icon name="pencil"></ion-icon></span>DENEGADO!
+                                                                        </button>
+                                                                        @endif                                                         
+                                                                    @endif                                                                    
+                                                                @endif
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 @endif
@@ -124,12 +147,13 @@
                                                     <img src="{{asset("storage/".$justificacion['adjunto'])}}" alt="justificacion">
                                                 @endif
                                             </div>
-                                            <form method="POST" action="{{ route('justificacion-editar') }}" enctype="multipart/form-data" id="form-just-ta{{$justificacion['id']}}">
+
+                                            <form method="POST" action="{{ route('respuesta-crear') }}" enctype="multipart/form-data" id="form-just-ta{{$justificacion['id']}}">
                                                 @csrf
 
                                                 <div class="input-mg-boton">
                                                     <label for="titulo">Titulo</label>
-                                                    <input type="text" class="form-control @error('titulo') is-invalid @enderror" placeholder="Opcional" id="tituloR{{$justificacion['id']}}" name="titulo" autocomplete="titulo" autofocus>
+                                                    <input type="text" class="form-control @error('titulo') is-invalid @enderror" placeholder="Opcional" id="titulo" name="titulo" autocomplete="titulo" autofocus>
                                                     @error('titulo')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -139,14 +163,30 @@
 
                                                 <div class="input-mg-boton">
                                                     <label for="mensaje">Respuesta :</label>
-                                                    <input type="text" class="form-control @error('mensaje') is-invalid @enderror" placeholder="Opcional" id="mensajeR{{$justificacion['id']}}" name="mensaje" rows="4" autocomplete="mensaje" autofocus>
+                                                    <input type="text" class="form-control @error('respuesta') is-invalid @enderror" placeholder="Opcional" id="respuesta" name="respuesta" rows="4" autocomplete="respuesta" autofocus>
 
-                                                    @error('mensaje')
+                                                    @error('respuesta')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
                                                 </div>
+                                                <div class="row mb-3">
+                                                    <label for="aceptacion" class="col-md-4 col-form-label text-md-end">{{ __('Aceptar?') }}</label>
+                                                    <div class="col-md-6">
+                                                        <select id="aceptacion" aria-label="Default select example" class="form-control @error('aceptacion') is-invalid @enderror" name="aceptacion" value="{{ old('aceptacion') }}" required autocomplete="aceptacion" autofocus>
+                                                            <option value="aceptado">aceptado</option>
+                                                            <option value="denegado">denegado</option>
+                                                        </select>
+
+                                                        @error('aceptacion')
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong class="alert-form">{{ $message }}</strong>
+                                                    </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <input type='hidden' name='id' value='{{$justificacion["id"]}}'>
                                             </form>
                                         </div>
                                     </div>
