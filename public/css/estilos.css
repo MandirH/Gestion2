@@ -760,6 +760,14 @@ body{
     max-width: 500px;
     margin: auto;
 }
+.buttom-pdf{
+    margin-bottom: 20px;
+    background: #f00;
+    border-color: #f00;
+}
+.buttom-pdf:hover{
+    background: #f55;
+}
 
 @keyframes App-logo-spin-img {
     from {

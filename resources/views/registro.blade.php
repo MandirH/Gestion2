@@ -844,6 +844,17 @@
                         </table>
                     </div>
                 </div>
+                <div class="cont-body-prin mr-20px">
+                    @if(isset($queryE) && isset($queryS))
+                        <button type="submit" class="btn btn-primary w-100 display-flex buttom-pdf">
+                            <span class="icon-nav"><ion-icon name="receipt"></ion-icon></span>{{ __('Convertir a PDF') }}
+                        </button>
+                    @else
+                        <button type="submit" class="btn btn-primary w-100 display-flex buttom-pdf" disabled>
+                            <span class="icon-nav"><ion-icon name="receipt"></ion-icon></span>{{ __('Convertir a PDF') }}
+                        </button>
+                    @endif
+                </div>
             </div>
         </div>
         <!-- Usuario -->
