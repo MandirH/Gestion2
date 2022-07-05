@@ -729,7 +729,7 @@
                                                 </td>
                                                 <td class="cell-align">
                                                     @foreach ($rcargo as $cargo)
-                                                        @if(Auth::user()->cargo == $cargo['nombre_cargo'])
+                                                        @if(Auth::user()->cargo == $cargo['id'])
                                                             <?php
                                                                 $recS = 60 - $seg;
                                                                 $recM = 60 - $min;
