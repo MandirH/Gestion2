@@ -846,9 +846,14 @@
                 </div>
                 <div class="cont-body-prin mr-20px">
                     @if(isset($queryE) && isset($queryS))
-                        <button type="submit" class="btn btn-primary w-100 display-flex buttom-pdf">
-                            <span class="icon-nav"><ion-icon name="receipt"></ion-icon></span>{{ __('Convertir a PDF') }}
-                        </button>
+                        <form method="POST" action="{{ route('crearPDF') }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="fecha1" value="{{$fechas[0]}}">
+                            <input type="hidden" name="fecha2" value="{{$fechas[1]}}">
+                            <button type="submit" class="btn btn-primary w-100 display-flex buttom-pdf">
+                                <span class="icon-nav"><ion-icon name="receipt"></ion-icon></span>{{ __('Convertir a PDF') }}
+                            </button>
+                        </form>
                     @else
                         <button type="submit" class="btn btn-primary w-100 display-flex buttom-pdf" disabled>
                             <span class="icon-nav"><ion-icon name="receipt"></ion-icon></span>{{ __('Convertir a PDF') }}
