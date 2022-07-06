@@ -93,7 +93,7 @@ class EntradaController extends Controller
             ->where('created_at', '<=', $toDate)
             ->get();
         $fechas = [$fromDate, $toDate];
-
+        //sign
         $pdf = PDF::loadview('pdf' , ["rcargo"=>$rcargo, "rentradac"=>$rentradac, "rsalidac"=>$rsalidac , "rentrada"=>$rentrada, "rsalida"=>$rsalida, "queryE"=>$queryE, "queryS"=>$queryS, "fechas"=>$fechas])->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download('CLISMON.pdf');
 
