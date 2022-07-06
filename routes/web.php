@@ -84,6 +84,7 @@ Route::post('/salida-cargo-editar', [SalidaCargoController::class, 'Editar'])->n
 
 Route::post('/entrada-crear', [EntradaController::class, 'Crear'])->name('entrada-crear');
 Route::post('/registro-date', [App\Http\Controllers\EntradaController::class, 'buscarRegistro'])->name('registro-date');
+Route::post('/crearPDF', [App\Http\Controllers\EntradaController::class, 'crearPDF'])->name('crearPDF');
 
 /* ---- SALIDAS ---- */
 
